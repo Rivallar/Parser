@@ -1,0 +1,7 @@
+.env
+.idea
+testDB
+explore.py
+parse.log
+explore.py
+__pycache__/
