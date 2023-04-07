@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Path, Depends, HTTPException, status
 from fastapi_pagination import Page, paginate
 
-from database import get_database, Links, Items
+from database import get_database
 from models import Item
 
 
@@ -11,7 +11,7 @@ lamoda_router = APIRouter()
 @lamoda_router.get("/lamoda")
 async def root(database=Depends(get_database)) -> dict:
 
-    buyer_type = Links.find().distinct('buyer_type')
+    buyer_type = database.catalog_urls.find().distinct('buyer_type')
     return {'buyer_type': buyer_type}
 
 
@@ -19,7 +19,7 @@ async def root(database=Depends(get_database)) -> dict:
 async def get_categories(buyer_type: str = Path(..., title="Parent buyer type of these categories"),
                          database=Depends(get_database)) -> dict:
 
-    categories = Links.find({'buyer_type': buyer_type}).distinct('category')
+    categories = database.catalog_urls.find({'buyer_type': buyer_type}).distinct('category')
 
     if not categories:
         raise HTTPException(
@@ -35,7 +35,7 @@ async def get_subcategories(buyer_type: str = Path(..., title="Parent buyer type
                             category: str = Path(..., title="Parent category of subcategories"),
                             database=Depends(get_database)) -> dict:
 
-    sub_categories = Links.find({'buyer_type': buyer_type, 'category': category}).distinct('subcategory')
+    sub_categories = database.catalog_urls.find({'buyer_type': buyer_type, 'category': category}).distinct('subcategory')
 
     if not sub_categories:
         raise HTTPException(
@@ -52,6 +52,12 @@ async def get_items(buyer_type: str = Path(..., title="Parent buyer type of thes
                     subcategory: str = Path(..., title="Parent subcategory of item types"),
                     database=Depends(get_database)) -> dict:
 
-    subcategory = Links.find_one({'buyer_type': buyer_type, 'category': category, 'subcategory': subcategory})
-    items = list(Items.find({'category_url': subcategory['url_string']}))
+    subcategory = database.catalog_urls.find_one({'buyer_type': buyer_type, 'category': category, 'subcategory': subcategory})
+
+    if not subcategory:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Subcategory does not exist",
+        )
+    items = list(database.items.find({'category_url': subcategory['url_string']}))
     return paginate(items)

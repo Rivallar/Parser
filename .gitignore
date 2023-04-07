@@ -1,4 +1,5 @@
 .env
+.env.docker
 .idea
 testDB
 explore.py
