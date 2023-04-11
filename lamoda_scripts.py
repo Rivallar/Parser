@@ -2,11 +2,17 @@ from datetime import datetime
 from time import sleep
 import logging
 
+from kafka import KafkaProducer, KafkaConsumer
+from json import dumps, loads
+
 from bs4 import BeautifulSoup
 import requests
 
 from database import get_database
 from models import CatalogLink, Item
+from config import settings
+
+
 from pymongo import MongoClient
 from slugify import slugify
 
@@ -124,6 +130,11 @@ def parse_single_item(url):
 
 
 def parse_subcategory(url, page=1):
+
+    producer = KafkaProducer(bootstrap_servers=['broker:29092'],
+                             value_serializer=lambda x: dumps(x).encode('utf-8'))
+
+
     completed = False
 
     client = MongoClient('localhost', 27017)
@@ -140,9 +151,10 @@ def parse_subcategory(url, page=1):
 
             parsed_item = parse_single_item(href)
             print(parsed_item)
-            save_to_db(parsed_item, collection, url)
-
+            producer.send('testtopic', parsed_item)
+            #save_to_db(parsed_item, collection, url)
             sleep(2)
+
         page += 1
 
 
@@ -158,3 +170,23 @@ def save_to_db(parsed_item, collection, cat_url):
     else:
         update_query = {"$set": {field: value for field, value in dict(db_item).items()}}
         collection.update_one(q, update_query)
+
+
+def test_consumer():
+
+    print('Consumer starting')
+    konsumer = KafkaConsumer('testtopic',
+                             bootstrap_servers=[settings.KAFKA_BROKER],
+                             #auto_offset_reset='earliest',
+                             enable_auto_commit=True,
+                             #group_id='my-group',
+                             value_deserializer=lambda x: loads(x.decode('utf-8'))
+                             )
+    for message in konsumer:
+        # if message.headers[0][1].decode('utf-8') == 'catalog':
+        #     catalog_list = message.value
+        #     if catalog_list:
+        #         repo = get_database().catalog_urls
+        #         for item in catalog_list:
+        #             repo.insert_one(item)
+        print(message.headers[0][1].decode('utf-8'))

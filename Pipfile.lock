@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b4ca0f2f4877829564474f12d9cfd28abea515e4268de574fea3cfc69f2f9d1e"
+            "sha256": "e49e15803d643f5fc1cde8ffe35801ba8bd6296dc31d8723abfe49f966fb7de7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -27,11 +27,11 @@
         },
         "beautifulsoup4": {
             "hashes": [
-                "sha256:c7bdbfb20a0dbe09518b96a809d93351b2e2bcb8046c0809466fa6632a10c257",
-                "sha256:e44795bb4f156d94abb5fbc56efff871c1045bfef72e9efe77558db9f9616ac3"
+                "sha256:492bbc69dca35d12daac71c4db1bfff0c876c00ef4a2ffacce226d4638eb72da",
+                "sha256:bd2520ca0d9d7d12694a53d44ac482d181b4ec1888909b035a3dbf40d0f57d4a"
             ],
             "index": "pypi",
-            "version": "==4.12.1"
+            "version": "==4.12.2"
         },
         "certifi": {
             "hashes": [
@@ -156,11 +156,11 @@
         },
         "fastapi-pagination": {
             "hashes": [
-                "sha256:6d3e0d52e510cd58e68fa4699999e06abaf7062762af08dc3ce49939924cebbd",
-                "sha256:9457b78cd5d0be590cbda506d5913f9d196a7b50768b7943cd0ad6a5f5aa090c"
+                "sha256:214957a1ad7d4ca96d26867e7556b54c96e885676b698f9fe1e4c1e489bdfc63",
+                "sha256:b8ef62be00fcafbb3dd82e7535e9eac689d9ea715c26f9a830f0ae7a2dc76eed"
             ],
             "index": "pypi",
-            "version": "==0.11.4"
+            "version": "==0.12.1"
         },
         "h11": {
             "hashes": [
@@ -177,6 +177,14 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==3.4"
+        },
+        "kafka-python": {
+            "hashes": [
+                "sha256:04dfe7fea2b63726cd6f3e79a2d86e709d608d74406638c5da33a01d45a9d7e3",
+                "sha256:2d92418c7cb1c298fa6c7f0fb3519b520d0d7526ac6cb7ae2a4fc65a51a94b6e"
+            ],
+            "index": "pypi",
+            "version": "==2.0.2"
         },
         "lxml": {
             "hashes": [

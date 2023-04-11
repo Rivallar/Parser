@@ -16,6 +16,7 @@ unidecode = "*"
 python-slugify = "*"
 pydantic-mongo = "*"
 pydantic = {extras = ["dotenv"], version = "*"}
+kafka-python = "*"
 
 [dev-packages]
 
