@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Path, Depends, HTTPException, status
 from fastapi_pagination import Page, paginate
 
+
 from database import get_database, ItemsDatabase, CatalogDatabase
 from models import Item
 
@@ -10,7 +11,6 @@ lamoda_router = APIRouter()
 
 @lamoda_router.get("/lamoda")
 async def root(links_db=Depends(CatalogDatabase)) -> dict:
-    print(links_db.collection)
     buyer_type = links_db.get_all().distinct('buyer_type')
     return {'buyer_type': buyer_type}
 
@@ -54,5 +54,11 @@ async def get_items(buyer_type: str = Path(..., title="Parent buyer type of thes
                     items_db=Depends(ItemsDatabase)) -> dict:
 
     subcategory = links_db.get(buyer_type=buyer_type, category=category, subcategory=subcategory)
+
+    if not subcategory:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Subcategory does not exist",
+        )
     items = list(items_db.filter(category_url=subcategory['url_string']))
     return paginate(items)
