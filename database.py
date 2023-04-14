@@ -1,23 +1,5 @@
 from pymongo import MongoClient
-from pymongo import mongo_client, ASCENDING
 from config import settings
-
-# client = mongo_client.MongoClient(settings.DATABASE_URL)
-# print('🚀 Connected to MongoDB...')
-#
-# db = client[settings.MONGO_INITDB_DATABASE]
-# Links = db.catalog_urls
-# Items = db.items
-# Note.create_index([("title", ASCENDING)], unique=True)
-
-
-def get_database(collection):
-    db1 = Database(collection)
-    yield db1
-
-    # client1 = MongoClient(settings.DATABASE_URL, 27017)
-    # database = client1[settings.MONGO_INITDB_DATABASE]
-    #return Database(collection)
 
 
 class CatalogDatabase:
