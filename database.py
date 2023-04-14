@@ -42,10 +42,10 @@ class CatalogDatabase:
 
     def save(self, data):
         if isinstance(data, list):
-            dicts = [item.dict() for item in data]
-            self.collection.insert_many(dicts)
+            #dicts = [item.dict() for item in data]
+            self.collection.insert_many(data)
         else:
-            self.collection.insert_one(data.dict())
+            self.collection.insert_one(data)
         return
 
     def delete(self, many=False, **conditions):

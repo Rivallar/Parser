@@ -18,11 +18,11 @@ add_pagination(app)
 #     await parse_subcategory('https://www.lamoda.by/c/203/shoes-girls/')
 
 
-@app.on_event('startup')
-def start_consumer():
-    #sleep(15)
-    print('Consumer starting')
-    test_consumer()
+# @app.on_event('startup')
+# def start_consumer():
+#     #sleep(15)
+#     print('Consumer starting')
+#     test_consumer()
 
 
 if __name__ == "__main__":
