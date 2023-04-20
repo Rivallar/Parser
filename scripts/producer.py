@@ -5,7 +5,7 @@ import logging
 import requests
 from slugify import slugify
 
-from models import CatalogLink
+from models.lamoda_models import CatalogLink
 from config import settings
 
 

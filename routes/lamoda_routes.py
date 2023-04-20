@@ -5,7 +5,7 @@ from fastapi_pagination import Page, paginate
 
 
 from database import ItemsDatabase, CatalogDatabase
-from models import Item
+from models.lamoda_models import Item
 
 from fastapi_cache.decorator import cache
 

@@ -1,9 +1,8 @@
-from fastapi import APIRouter, Path, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi_pagination import Page, paginate
-from typing import List
 
-from twitch_scripts import read_all_games, get_game_streams, get_game_id, get_token, search_game, search_channels, get_user
-from twitch_models import Game, Stream, SearchResult, Channel, TwitchUser
+from scripts.twitch_scripts import read_all_games, get_game_streams, get_game_id, get_token, search_game, search_channels, get_user
+from models.twitch_models import Game, Stream, SearchResult, Channel, TwitchUser
 
 twitch_router = APIRouter()
 
