@@ -3,17 +3,19 @@ from fastapi_pagination import add_pagination
 import uvicorn
 
 from routes.lamoda_routes import lamoda_router
+from routes.twitch_routes import twitch_router
 from config import settings
 
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 
-
 from redis import asyncio as aioredis
+
 
 app = FastAPI()
 
 app.include_router(lamoda_router)
+app.include_router(twitch_router)
 add_pagination(app)
 
 

@@ -5,6 +5,8 @@ class Settings(BaseSettings):
     DATABASE_URL: str
     MONGO_INITDB_DATABASE: str
     KAFKA_BROKER: str
+    TWITCH_CLIENT_ID: str
+    TWITCH_CLIENT_SECRET: str
 
     REDIS: str
     KAFKA_LAMODA_TOPIC: str
