@@ -1,0 +1,147 @@
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:Probing node bootstrap-0 broker version
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:Broker version identified as 2.5.0
+INFO:kafka.conn:Set configuration api_version=(2, 5, 0) to skip auto check_version requests on startup
+WARNING:kafka.coordinator.consumer:group_id is None: disabling auto-commit.
+INFO:kafka.consumer.subscription_state:Updating subscribed topics to: ('testtopic',)
+INFO:kafka.consumer.subscription_state:Updated partition assignment: [TopicPartition(topic='testtopic', partition=0)]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. 
+INFO:root:Updating catalog
+INFO:root:Starting new category:https://www.lamoda.by/c/399/clothes-bluzy-rubashki/
+INFO:root:Category updated:https://www.lamoda.by/c/399/clothes-bluzy-rubashki/
+INFO:root:Starting new category:https://www.lamoda.by/c/2483/clothes-bluzy/
+INFO:root:Category updated:https://www.lamoda.by/c/2483/clothes-bluzy/
+INFO:root:Starting new category:https://www.lamoda.by/c/2484/clothes-rubashki/
+INFO:root:Category updated:https://www.lamoda.by/c/2484/clothes-rubashki/
+INFO:root:Starting new category:https://www.lamoda.by/c/401/clothes-bryuki-shorty-kombinezony/
+INFO:root:Category updated:https://www.lamoda.by/c/401/clothes-bryuki-shorty-kombinezony/
+INFO:root:Starting new category:https://www.lamoda.by/c/2774/clothes-uzkie/
+INFO:root:Category updated:https://www.lamoda.by/c/2774/clothes-uzkie/
+INFO:root:Starting new category:https://www.lamoda.by/c/3203/clothes-klassicheskie-bryuki/
+INFO:root:Category updated:https://www.lamoda.by/c/3203/clothes-klassicheskie-bryuki/
+INFO:root:Starting new category:https://www.lamoda.by/c/409/clothes-legginsy/
+INFO:root:Category updated:https://www.lamoda.by/c/409/clothes-legginsy/
+INFO:root:Starting new category:https://www.lamoda.by/c/357/clothes-verkhnyaya-odezhda/
+INFO:root:Updating catalog
+INFO:root:Starting new category:https://www.lamoda.by/c/399/clothes-bluzy-rubashki/
+WARNING:root:https://www.lamoda.by/c/357/clothes-verkhnyaya-odezhda/
+WARNING:root:https://www.lamoda.by/c/357/clothes-verkhnyaya-odezhda/
+WARNING:root:https://www.lamoda.by/c/357/clothes-verkhnyaya-odezhda/
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:Probing node bootstrap-0 broker version
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:Broker version identified as 2.5.0
+INFO:kafka.conn:Set configuration api_version=(2, 5, 0) to skip auto check_version requests on startup
+WARNING:kafka.coordinator.consumer:group_id is None: disabling auto-commit.
+INFO:kafka.consumer.subscription_state:Updating subscribed topics to: ('testtopic',)
+INFO:kafka.consumer.subscription_state:Updated partition assignment: [TopicPartition(topic='testtopic', partition=0)]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. 
+INFO:root:Updating catalog
+INFO:root:Starting new category:https://www.lamoda.by/c/399/clothes-bluzy-rubashki/
+INFO:root:Updating catalog
+INFO:root:Starting new category:https://www.lamoda.by/c/399/clothes-bluzy-rubashki/
+INFO:root:Updating catalog
+INFO:root:Starting new category:https://www.lamoda.by/c/357/clothes-verkhnyaya-odezhda/
+INFO:root:Category updated:https://www.lamoda.by/c/357/clothes-verkhnyaya-odezhda/
+INFO:root:Starting new category:https://www.lamoda.by/c/359/clothes-kurtki/
+INFO:root:Category updated:https://www.lamoda.by/c/359/clothes-kurtki/
+INFO:root:Starting new category:https://www.lamoda.by/c/2464/clothes-zhileti-verhnie/
+INFO:root:Category updated:https://www.lamoda.by/c/2464/clothes-zhileti-verhnie/
+INFO:root:Starting new category:https://www.lamoda.by/c/2461/clothes-kozhanie-kurtki/
+INFO:root:Category updated:https://www.lamoda.by/c/2461/clothes-kozhanie-kurtki/
+INFO:root:Starting new category:https://www.lamoda.by/c/361/clothes-palto/
+INFO:root:Category updated:https://www.lamoda.by/c/361/clothes-palto/
+INFO:root:Starting new category:https://www.lamoda.by/c/6059/clothes-zhenzimniepalto/
+INFO:root:Category updated:https://www.lamoda.by/c/6059/clothes-zhenzimniepalto/
+INFO:root:Starting new category:https://www.lamoda.by/c/3562/clothes-parki-jen/
+INFO:root:Category updated:https://www.lamoda.by/c/3562/clothes-parki-jen/
+INFO:root:Starting new category:https://www.lamoda.by/c/363/clothes-zenskie-plaschi/
+INFO:root:Category updated:https://www.lamoda.by/c/363/clothes-zenskie-plaschi/
+INFO:root:Starting new category:https://www.lamoda.by/c/365/clothes-puhoviki/
+INFO:root:Category updated:https://www.lamoda.by/c/365/clothes-puhoviki/
+INFO:root:Starting new category:https://www.lamoda.by/c/3818/clothes-puhoviki-long/
+INFO:root:Category updated:https://www.lamoda.by/c/3818/clothes-puhoviki-long/
+INFO:root:Starting new category:https://www.lamoda.by/c/3819/clothes-puhoviki-mid/
+INFO:root:Category updated:https://www.lamoda.by/c/3819/clothes-puhoviki-mid/
+INFO:root:Starting new category:https://www.lamoda.by/c/3257/clothes-mehovye-izdeliya/
+INFO:root:Category updated:https://www.lamoda.by/c/3257/clothes-mehovye-izdeliya/
+INFO:root:Starting new category:https://www.lamoda.by/c/375/clothes-vodolazki/
+INFO:root:Category updated:https://www.lamoda.by/c/375/clothes-vodolazki/
+INFO:root:Starting new category:https://www.lamoda.by/c/377/clothes-dempery-i-pulovery/
+INFO:root:Category updated:https://www.lamoda.by/c/377/clothes-dempery-i-pulovery/
+INFO:root:Starting new category:https://www.lamoda.by/c/5871/clothes-zhendjempery/INFO:root:Category updated:https://www.lamoda.by/c/397/clothes-d-insy/
+INFO:root:Starting new category:https://www.lamoda.by/c/4208/clothes-momjeans/
+INFO:root:Category updated:https://www.lamoda.by/c/4208/clothes-momjeans/
+INFO:root:Starting new category:https://www.lamoda.by/c/2628/clothes-uzkiedjinsy/
+INFO:root:Category updated:https://www.lamoda.by/c/2628/clothes-uzkiedjinsy/
+INFO:root:Starting new category:https://www.lamoda.by/c/4651/clothes-dom-odejda/
+INFO:root:Updating catalog
+INFO:root:Starting new category:https://www.lamoda.by/c/4651/clothes-dom-odejda/
+INFO:root:Category updated:https://www.lamoda.by/c/4651/clothes-dom-odejda/
+INFO:root:Starting new category:https://www.lamoda.by/c/2498/clothes-nochnie-sorochki/
+INFO:root:Category updated:https://www.lamoda.by/c/2498/clothes-nochnie-sorochki/
+INFO:root:Starting new category:https://www.lamoda.by/c/3009/clothes-pijamy/
+INFO:root:Category updated:https://www.lamoda.by/c/3009/clothes-pijamy/
+INFO:root:Starting new category:https://www.lamoda.by/c/2500/clothes-halaty/
+INFO:root:Category updated:https://www.lamoda.by/c/2500/clothes-halaty/
+INFO:root:Starting new category:https://www.lamoda.by/c/4184/clothes-coveralls/
+INFO:root:Category updated:https://www.lamoda.by/c/4184/clothes-coveralls/
+INFO:root:Starting new category:https://www.lamoda.by/c/3002/clothes-plyajnaya-odejda/
+INFO:root:Category updated:https://www.lamoda.by/c/3002/clothes-plyajnaya-odejda/
+INFO:root:Starting new category:https://www.lamoda.by/c/5462/clothes-musulmanskaya-odezhda/
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:Probing node bootstrap-0 broker version
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:Broker version identified as 2.5.0
+INFO:kafka.conn:Set configuration api_version=(2, 5, 0) to skip auto check_version requests on startup
+WARNING:kafka.coordinator.consumer:group_id is None: disabling auto-commit.
+INFO:kafka.consumer.subscription_state:Updating subscribed topics to: ('testtopic',)
+INFO:kafka.consumer.subscription_state:Updated partition assignment: [TopicPartition(topic='testtopic', partition=0)]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. 
+
+INFO:root:Updating catalog
+INFO:root:Starting new category:https://www.lamoda.by/c/2937/clothes-clothes-big-size/
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:Probing node bootstrap-0 broker version
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:Broker version identified as 2.5.0
+INFO:kafka.conn:Set configuration api_version=(2, 5, 0) to skip auto check_version requests on startup
+WARNING:kafka.coordinator.consumer:group_id is None: disabling auto-commit.
+INFO:kafka.consumer.subscription_state:Updating subscribed topics to: ('lamoda',)
+INFO:kafka.consumer.subscription_state:Updated partition assignment: [TopicPartition(topic='lamoda', partition=0)]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. 
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:Probing node bootstrap-0 broker version
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:Broker version identified as 2.5.0
+INFO:kafka.conn:Set configuration api_version=(2, 5, 0) to skip auto check_version requests on startup
+WARNING:kafka.coordinator.consumer:group_id is None: disabling auto-commit.
+INFO:kafka.consumer.subscription_state:Updating subscribed topics to: ('lamoda',)
+WARNING:root:Consumer started
+INFO:kafka.consumer.subscription_state:Updated partition assignment: [TopicPartition(topic='lamoda', partition=0)]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. 
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:Probing node bootstrap-0 broker version
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:Broker version identified as 2.5.0
+INFO:kafka.conn:Set configuration api_version=(2, 5, 0) to skip auto check_version requests on startup
+WARNING:kafka.coordinator.consumer:group_id is None: disabling auto-commit.
+INFO:kafka.consumer.subscription_state:Updating subscribed topics to: ('lamoda',)
+WARNING:root:Consumer started
+INFO:kafka.consumer.subscription_state:Updated partition assignment: [TopicPartition(topic='lamoda', partition=0)]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: connecting to localhost:9092 [('::1', 9092, 0, 0) IPv6]
+INFO:kafka.conn:<BrokerConnection node_id=1 host=localhost:9092 <connecting> [IPv6 ('::1', 9092, 0, 0)]>: Connection complete.
+INFO:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=localhost:9092 <connected> [IPv6 ('::1', 9092, 0, 0)]>: Closing connection. 
+WARNING:root:Updating catalog
+WARNING:root:Starting new category:https://www.lamoda.by/c/399/clothes-bluzy-rubashki/

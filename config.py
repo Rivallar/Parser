@@ -8,6 +8,10 @@ class Settings(BaseSettings):
     TWITCH_CLIENT_ID: str
     TWITCH_CLIENT_SECRET: str
 
+    REDIS: str
+    KAFKA_LAMODA_TOPIC: str
+
+
     class Config:
         env_file = './.env'
 
