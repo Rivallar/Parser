@@ -4,7 +4,7 @@ from fastapi import APIRouter, Path, Depends, HTTPException, status
 from fastapi_pagination import Page, paginate
 
 
-from database import get_database, ItemsDatabase, CatalogDatabase
+from database import ItemsDatabase, CatalogDatabase
 from models import Item
 
 from fastapi_cache.decorator import cache

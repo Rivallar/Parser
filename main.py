@@ -1,9 +1,7 @@
 from fastapi import FastAPI
 from fastapi_pagination import add_pagination
 import uvicorn
-from time import sleep
 
-from lamoda_scripts import parse_subcategory, test_consumer
 from routes.lamoda_routes import lamoda_router
 from config import settings
 
