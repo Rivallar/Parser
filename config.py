@@ -9,6 +9,13 @@ class Settings(BaseSettings):
     TWITCH_CLIENT_SECRET: str
 
     REDIS: str
+
+    REDIS_HOST: str
+    REDIS_PORT: int
+    REDIS_DB: int
+
+    CELERY_BROKER: str
+    CELERY_BACKEND: str
     KAFKA_LAMODA_TOPIC: str
 
 

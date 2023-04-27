@@ -18,6 +18,8 @@ pydantic-mongo = "*"
 pydantic = {extras = ["dotenv"], version = "*"}
 kafka-python = "*"
 fastapi-cache2 = {extras = ["redis"], version = "*"}
+celery = "*"
+flower = "*"
 
 [dev-packages]
 
