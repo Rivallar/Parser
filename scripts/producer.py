@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from datetime import datetime
 from json import dumps
 from kafka import KafkaProducer
 import logging
@@ -9,7 +10,7 @@ from models.lamoda_models import CatalogLink
 from config import settings
 
 
-logging.basicConfig(level=logging.INFO, filename='produce.log', filemode='a')
+logging.basicConfig(level=logging.FATAL, filename='produce.log', filemode='a')
 
 
 def build_catalog_tree():
@@ -60,9 +61,10 @@ def last_category_url():
             lines = log.readlines()[::-1]
             lines = lines[:30]
             for line in lines:
-                if 'WARNING' in line:
-                    url_with_page = line.split(':', 3)[-1].strip()
+                if 'CRITICAL' in line:
+                    url_with_page = line.split(':', 4)[-1].strip()
                     url = url_with_page.split('?')[0]
+                    print(url)
                     return url
     except FileNotFoundError:
         return None
@@ -131,17 +133,17 @@ def parse_subcategory(url, producer, page=1):
 
     while not completed:
         curr_page = f'{url}?page={page}'
-        logging.warning(f'{page}:{curr_page}')
+        logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:{page}:{curr_page}')
         for href in get_hrefs_from_page(curr_page):
             if href == "No more items":
                 producer.send(settings.KAFKA_LAMODA_TOPIC, {'end_of_cat': 'finished'},
                               headers=[('finished', url.encode('utf-8'))])
                 completed = True
-                logging.warning('No more items to parse. Task is complete.')
+                logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:No more items to parse. Task is complete.')
                 break
 
             parsed_item = parse_single_item(href)
-            print(parsed_item)
+            #print(parsed_item)
             producer.send(settings.KAFKA_LAMODA_TOPIC, parsed_item, headers=headers)
 
         page += 1

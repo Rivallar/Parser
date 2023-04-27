@@ -8,7 +8,7 @@ from config import settings
 from database import CatalogDatabase, ItemsDatabase
 
 
-logging.basicConfig(level=logging.INFO, filename='consume.log', filemode='a')
+logging.basicConfig(level=logging.FATAL, filename='consume.log', filemode='a')
 
 
 def main():
@@ -19,7 +19,7 @@ def main():
                              # group_id='my-group',
                              value_deserializer=lambda x: loads(x.decode('utf-8'))
                              )
-    logging.warning('Consumer started')
+    logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:Consumer started')
     buffer = []     # keeps files before saving in DB
     for message in konsumer:
 
@@ -30,7 +30,7 @@ def main():
                 db = CatalogDatabase()
                 db.drop_collection()
                 db.save(catalog_list)
-                logging.warning('Updating catalog')
+                logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:Updating catalog')
 
         #   filling buffer with documents of same category
         elif message.headers and message.headers[0][0] == 'catalog_url':
@@ -47,12 +47,12 @@ def main():
             db.delete(many=True, category_url=category_url)
             db.save(buffer)
             buffer = []
-            logging.warning(f'Category updated:{category_url}')
+            logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:Category updated:{category_url}')
 
         #   Clear buffer before starting to collect documents of new category
         elif message.headers and message.headers[0][0] == 'starting':
             buffer = []
-            logging.warning(f'Starting new category:{message.headers[0][1].decode("utf-8")}')
+            logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:Starting new category:{message.headers[0][1].decode("utf-8")}')
 
 
 if __name__ == "__main__":
