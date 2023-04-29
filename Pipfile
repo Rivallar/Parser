@@ -20,6 +20,7 @@ kafka-python = "*"
 fastapi-cache2 = {extras = ["redis"], version = "*"}
 celery = "*"
 flower = "*"
+aiohttp = "*"
 
 [dev-packages]
 

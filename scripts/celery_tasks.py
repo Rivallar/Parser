@@ -1,3 +1,5 @@
+import asyncio
+
 from celery import Celery
 from time import sleep
 
@@ -29,7 +31,9 @@ def lamoda_consumer():
 
 @tasks_app.task
 def lamoda_producer():
-    parse_lamoda()
+    while True:
+        coro = parse_lamoda()
+        asyncio.run(coro)
 
 
 @tasks_app.task

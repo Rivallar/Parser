@@ -4,7 +4,7 @@
 testDB
 explore.py
 parse.log
-scripts/consume.log
+consume.log
 produce.log
 explore.py
 __pycache__/
