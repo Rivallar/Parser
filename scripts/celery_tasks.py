@@ -32,13 +32,21 @@ def lamoda_consumer():
 @tasks_app.task
 def lamoda_producer():
     while True:
-        coro = parse_lamoda()
-        asyncio.run(coro)
+        try:
+            coro = parse_lamoda()
+            asyncio.run(coro)
+        except:
+            sleep(30)
+            continue
 
 
 @tasks_app.task
 def all_twitch_games():
     while True:
-        sleep(60)
-        token = get_token()
-        get_all_games(token)
+        try:
+            token = get_token()
+            get_all_games(token)
+            sleep(60)
+        except:
+            sleep(60)
+            continue

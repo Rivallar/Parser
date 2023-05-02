@@ -78,7 +78,7 @@ async def parse_single_item(session, url):
     """Parses a single detail page of an item and returns a dict with some information."""
 
     # print(f'Parsing {url}')
-    async with session.get(url) as req:
+    async with session.get(url, ssl=False) as req:
         response = await req.text()
 
         soup = BeautifulSoup(response, 'lxml')
@@ -128,6 +128,12 @@ async def parse_subcategory(url, producer, page=1):
 
     while not completed:
         curr_page = f'{url}?page={page}'
+
+        #r.set('last_cat_page', page)
+        if page % 50 == 0:
+            logging.fatal('Gonna sleep for a while')
+            sleep(300)
+
         logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:{page}:{curr_page}')
         hrefs = get_hrefs_from_page(curr_page)
 
