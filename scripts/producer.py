@@ -1,3 +1,5 @@
+import asyncio
+import aiohttp
 from bs4 import BeautifulSoup
 from datetime import datetime
 from json import dumps
@@ -6,6 +8,7 @@ import logging
 import requests
 import redis
 from slugify import slugify
+from time import sleep
 
 from models.lamoda_models import CatalogLink
 from config import settings
@@ -64,54 +67,59 @@ def get_hrefs_from_page(url):
     soup = BeautifulSoup(response.text, 'lxml')
     items = soup.find("div", class_="grid__catalog")
     if not items:
-        yield "No more items"
+        return
     else:
         hrefs = [f"{base_url}{href.get('href')}" for href in items.find_all("a")]
-        for href in hrefs:
-            yield href
+        return hrefs
 
 
-def parse_single_item(url):
+async def parse_single_item(session, url):
 
     """Parses a single detail page of an item and returns a dict with some information."""
 
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'lxml')
-    try:
-        price = soup.find_all("span", class_="x-premium-product-prices__price")[-1].text.strip()            # last price with discount
-    except IndexError:
-        price = 'Нет в наличии'
+    # print(f'Parsing {url}')
+    async with session.get(url, ssl=False) as req:
+        response = await req.text()
 
-    try:
-        brand_name = soup.find("span", class_="x-premium-product-title__brand-name").text.strip()
-    except AttributeError:
-        brand_name = 'attribute is missing'
+        soup = BeautifulSoup(response, 'lxml')
+        try:
+            price = soup.find_all("span", class_="x-premium-product-prices__price")[
+                -1].text.strip()  # last price with discount
+        except IndexError:
+            price = 'Нет в наличии'
 
-    try:
-        descr = soup.find("div", class_="x-premium-product-title__model-name").text.strip()
-    except AttributeError:
-        descr = 'attribute is missing'
+        try:
+            brand_name = soup.find("span", class_="x-premium-product-title__brand-name").text.strip()
+        except AttributeError:
+            brand_name = 'attribute is missing'
 
-    try:
-        image_url = f'https:{soup.find("img").get("src")}'
-    except AttributeError:
-        image_url = 'attribute is missing'
+        try:
+            descr = soup.find("div", class_="x-premium-product-title__model-name").text.strip()
+        except AttributeError:
+            descr = 'attribute is missing'
 
-    params = soup.find_all("span", class_='x-premium-product-description-attribute__name')
-    values = soup.find_all("span", class_='x-premium-product-description-attribute__value')
-    parameters = {}
-    for p, v in zip(params, values):
-        parameters[p.text] = v.text
+        try:
+            image_url = f'https:{soup.find("img").get("src")}'
+        except AttributeError:
+            image_url = 'attribute is missing'
 
-    result = {'item_url': url, 'price': price, 'brand_name': brand_name, 'description': descr,
-              'image_url': image_url, 'characteristics': parameters}
+        params = soup.find_all("span", class_='x-premium-product-description-attribute__name')
+        values = soup.find_all("span", class_='x-premium-product-description-attribute__value')
+        parameters = {}
+        for p, v in zip(params, values):
+            parameters[p.text] = v.text
 
-    return result
+        result = {'item_url': url, 'price': price, 'brand_name': brand_name, 'description': descr,
+                  'image_url': image_url, 'characteristics': parameters}
+
+        return result
 
 
-def parse_subcategory(url, producer, page=1):
+async def parse_subcategory(url, producer, page=1):
 
     """Loops through a whole category and parses all items. Sends Each item to kafka."""
+
+
 
     completed = False
     headers = [('catalog_url', url.encode('utf-8'))]        # headers are used by consumer to discern actions
@@ -120,23 +128,33 @@ def parse_subcategory(url, producer, page=1):
 
     while not completed:
         curr_page = f'{url}?page={page}'
+
+        #r.set('last_cat_page', page)
+        if page % 50 == 0:
+            logging.fatal('Gonna sleep for a while')
+            sleep(300)
+
         logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:{page}:{curr_page}')
-        for href in get_hrefs_from_page(curr_page):
-            if href == "No more items":
-                producer.send(settings.KAFKA_LAMODA_TOPIC, {'end_of_cat': 'finished'},
-                              headers=[('finished', url.encode('utf-8'))])
-                completed = True
-                logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:No more items to parse. Task is complete.')
-                break
+        hrefs = get_hrefs_from_page(curr_page)
 
-            parsed_item = parse_single_item(href)
-            #print(parsed_item)
-            producer.send(settings.KAFKA_LAMODA_TOPIC, parsed_item, headers=headers)
+        if not hrefs:
+            producer.send(settings.KAFKA_LAMODA_TOPIC, {'end_of_cat': 'finished'},
+                          headers=[('finished', url.encode('utf-8'))])
+            completed = True
+            logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:No more items to parse. Task is complete.')
+            break
 
+        async with aiohttp.ClientSession() as session:
+            tasks = []
+            for href in hrefs:
+                tasks.append(asyncio.ensure_future(parse_single_item(session, href)))
+            all_items = await asyncio.gather(*tasks)
+            for item in all_items:
+                producer.send(settings.KAFKA_LAMODA_TOPIC, item, headers=headers)
         page += 1
 
 
-def main():
+async def main():
 
     """Launches parsing task. Refreshes catalog tree, then defines from log where it stopped and starts parsing from
     that point."""
@@ -164,8 +182,10 @@ def main():
     # parsing categories from catalog_urls
     for url in catalog_urls:
         producer.send(settings.KAFKA_LAMODA_TOPIC, {'new_cat': 'starting'}, headers=[('starting', url.encode('utf-8'))])
-        parse_subcategory(url, producer)
+        await parse_subcategory(url, producer)
+        if url == catalog_urls[-1]:
+            r.set('last_cat_url', '')
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

@@ -37,7 +37,7 @@ def main():
             item = message.value
             item['category_url'] = message.headers[0][1].decode('utf-8')
             item['creation_time'] = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
-            print(item)
+            #print(item)
             buffer.append(item)
 
         #   Saving items to db
@@ -45,7 +45,8 @@ def main():
             category_url = message.headers[0][1].decode('utf-8')
             db = ItemsDatabase()
             db.delete(many=True, category_url=category_url)
-            db.save(buffer)
+            if buffer:
+                db.save(buffer)
             buffer = []
             logging.fatal(f'{datetime.now().strftime("%d.%m %H-%M-%S")}:Category updated:{category_url}')
 
